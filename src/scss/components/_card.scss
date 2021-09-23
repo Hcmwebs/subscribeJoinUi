@@ -1,0 +1,147 @@
+@use '../abstracts/' as *;
+@use 'sass:math';
+
+.card {
+  max-width: $fixedWidth;
+  @include flex(column, space-between, center);
+  gap: 0.5rem;
+  padding: 1.25rem 2rem;
+  border-radius: 25px;
+  box-shadow: $shadow-3;
+  background-color: $grey-200;
+  z-index: 9;
+  overflow: hidden;
+  position: relative;
+
+  &.card-subscribe {
+    width: 100%;
+    max-width: 570px;
+  }
+  .card-body {
+    @include flex(row, space-between, center);
+
+    .bell-wrapper {
+      margin-top: 2rem;
+      padding: 1rem;
+      border-radius: $borderRadius;
+      background-color: #f1f4ff;
+      @include grid(center);
+    }
+
+    #bell {
+      color: $primary-500;
+    }
+
+    #close,
+    #close2 {
+      color: $grey-400;
+      align-self: flex-start;
+      position: absolute;
+      right: 15px;
+    }
+
+    #google {
+      color: #2852e7;
+    }
+  }
+
+  &.card-join {
+    width: 100%;
+    max-width: 450px;
+
+    .buttons {
+      background-color: #2852e7;
+      border-radius: 28px;
+      padding: 0.1rem 0.2rem;
+      cursor: pointer;
+      transition: $transition;
+
+      span {
+        padding: 0.75rem;
+        border-radius: 50%;
+        background-color: #fff;
+        @include grid(center);
+      }
+
+      p {
+        font-size: 14px;
+        padding-right: 0.5rem;
+        color: #fff;
+      }
+
+      &:hover {
+        background: darken(#2852e7, 30);
+        transform: scale(0.98);
+        box-shadow: $shadow-3;
+      }
+    }
+  }
+
+  .card-text {
+    @include flex(column, center, center);
+    gap: 0.5rem;
+    padding: 0 2rem;
+    padding-top: 2rem;
+
+    h2 {
+      font-size: 16px;
+      margin: 0;
+      color: #19163c;
+      text-transform: initial;
+    }
+
+    p {
+      font-size: 12px;
+      font-weight: 400;
+      color: #19163c;
+      max-width: math.div($fixedWidth, 3);
+      margin: 0;
+    }
+  }
+
+  .buttons {
+    @include flex(row, center, center);
+    gap: 1rem;
+  }
+
+  .card-footer {
+    @include flex(column, center, center);
+  }
+}
+
+@media (min-width: $tablets) {
+  .card {
+    padding: 30px 40px;
+
+    .card-body {
+      .bell-wrapper {
+        width: 100px;
+        height: 100px;
+        margin-left: -2rem;
+        padding: 0;
+      }
+    }
+
+    .card-text {
+      h2 {
+        font-size: 22px;
+      }
+      p {
+        font-size: 1rem;
+        max-width: math.div($fixedWidth, 2);
+      }
+    }
+  }
+}
+@media (min-width: $bigScreen) {
+  .card {
+    &.card-subscribe {
+      max-height: 270px;
+      transform: translateX(-50%);
+    }
+    &.card-join {
+      max-height: 340px;
+      transform: translateX(50%);
+    }
+  }
+}

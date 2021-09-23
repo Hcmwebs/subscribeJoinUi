@@ -1,0 +1,24 @@
+@use '../abstracts/' as *;
+
+.container {
+  width: 100%;
+  max-width: $maxWidth;
+  min-height: 100vh;
+  padding: 0 20px;
+  @include grid(center);
+  gap: 1rem;
+  position: relative;
+  background-color: $bgColor;
+
+  &::after {
+    content: '';
+    width: 213px;
+    height: 452px;
+    position: absolute;
+    background-color: rgb(65, 72, 99);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+  }
+}
